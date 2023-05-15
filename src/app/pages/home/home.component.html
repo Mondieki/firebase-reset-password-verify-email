@@ -1,0 +1,80 @@
+<section>
+    <div class="bg-primary position-absolute h-100 top-0 left-0 zindex-100 col-lg-6 col-xl-6 zindex-100 d-none d-lg-flex flex-column justify-content-end"
+        data-bg-size="cover" data-bg-position="center">
+        <img src="./assets/img/bg00.webp" alt="pangoni background image" class="img-as-bg">
+    </div>
+
+    <div class="container-fluid d-flex flex-column">
+        <div class="row align-items-center justify-content-center justify-content-lg-end min-vh-100">
+            <div class="col-sm-7 col-lg-6 col-xl-6 py-6 py-lg-0">
+                <div class="row justify-content-center">
+                    <ng-container [ngSwitch]="mode">
+                        <!-- password reset -->
+                        <ng-container *ngSwitchCase="'resetPassword'">
+                            <div class="col-11 col-lg-10 col-xl-6">
+                                <div>
+                                    <div class="mb-5">
+                                        <h6 class="h3 mb-1">Reset password</h6>
+                                        <p class="text-muted mb-0">
+                                            Choose a new, strong password that you haven't used before. Make sure it's at least 8 characters long and contains a mix of letters, numbers, and symbols.
+                                        </p>
+                                    </div>
+                                    <form>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Password</label>
+                                            <div class="input-group">
+                                                <input #inputPassword type="password" class="form-control" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                                                <div class="input-group-append show-pass1" (click)="toggleEyeIcon(inputPassword)">
+                                                    <span class="input-group-text "> 
+                                                        <i class="fa" [ngClass]="{'fa-eye-slash': toggleEye, 'fa-eye': !toggleEye}"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <button type="button" class="btn btn-block btn-primary"
+                                                (click)="savePassword()">Reset password</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </ng-container>
+                    
+                        <!-- verify email address -->
+                        <ng-container *ngSwitchCase="'verifyEmail'">
+                            <div class="vh-100">
+                                <div class="container h-100">
+                                    <div class="row justify-content-center h-100 align-items-center">
+                                        <div class="col-md-12">
+                                            <div class="form-input-content text-center error-page">
+                                                <h1 class="error-text font-weight-bold">
+                                                    <i [ngClass]="verifiedStatus ? 'fa fa-check text-success' : 'fa fa-times-circle text-danger'"></i>
+                                                </h1>
+                                                <p>{{ message }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    
+                        <!-- default action -->
+                        <ng-container *ngSwitchDefault>
+                            <img src="assets/img/loading.gif" alt="">
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+<ngx-spinner
+    bdColor = "rgba(0, 0, 0, 0.8)"
+    size = "medium"
+    color = "#fff"
+    type = "ball-clip-rotate-pulse"
+    [fullScreen] = "true">
+    <p style="color: white" > Loading... </p>
+</ngx-spinner>

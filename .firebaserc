@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "project_id": {
+      "hosting": {
+        "ngfire": [
+          "site_id"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "project_id"
+  }
+}
